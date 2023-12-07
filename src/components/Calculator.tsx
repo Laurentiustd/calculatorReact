@@ -70,9 +70,10 @@ const [count, setCount] = useState("");
             try {
                 var temp:number = parseInt(eval(count))
                 if(!isNaN(temp)){
-                    setDisplay(eval(count).toString());
-                    setCount(eval(count).toString());
-                    const obj:INumber = {id:id++, value: eval(count)};
+                    setDisplay(eval(count).toString().substring(0, 12));
+                    setCount(eval(count).toString().substring(0, 12));
+                    const result = eval(count).toString().substring(0, 12);
+                    const obj:INumber = {id:id++, value: result};
                     setHistory([...history, obj]);
                 }else{
                     setDisplay("Err");
@@ -103,19 +104,6 @@ const [count, setCount] = useState("");
             <button onClick={resetNumber}>C</button>
             <button onClick={deleteNumber}>DEL</button>
             <Link to="/supportPage" className="operator support-btn">?</Link>
-            {/* <button className="operator" onClick={()=>numberHandler('/')}>/</button>
-            <button onClick={()=>numberHandler('1')}>1</button>
-            <button onClick={()=>numberHandler('2')}>2</button>
-            <button onClick={()=>numberHandler('3')}>3</button>
-            <button className="operator" onClick={()=>numberHandler('*')}>X</button>
-            <button onClick={()=>numberHandler('4')}>4</button>
-            <button onClick={()=>numberHandler('5')}>5</button>
-            <button onClick={()=>numberHandler('6')}>6</button>
-            <button className="operator" onClick={()=>numberHandler('-')}>-</button>
-            <button onClick={()=>numberHandler('7')}>7</button>
-            <button onClick={()=>numberHandler('8')}>8</button>
-            <button onClick={()=>numberHandler('9')}>9</button>
-            <button className="operator" onClick={()=>numberHandler('+')}>+</button> */}
             <Operator value='/' class='operator' handler={numberHandler} symbol='/'/>
             <Number value={1} handler={numberHandler} />
             <Number value={2} handler={numberHandler} />
